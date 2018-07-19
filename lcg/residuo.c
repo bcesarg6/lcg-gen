@@ -8,20 +8,16 @@ unsigned long int seed = 1, z = 0;
 unsigned long int m = 2147483647; /* M = 2^31 -1 */
 unsigned long int a = 25717;
 unsigned long int c = 0;
-int histogram = 0;
 
 void initRand(unsigned long int n_a,
               unsigned long int n_c,
               unsigned long int n_m,
-              unsigned long int n_seed,
-              int hist_param){
-a = n_a;
-c = n_c;
-m = n_m;
-seed = n_seed;
-z = seed;
-histogram = hist_param;
-
+              unsigned long int n_seed){
+  a = n_a;
+  c = n_c;
+  m = n_m;
+  seed = n_seed;
+  z = seed;
 }
 
 double nextRand(){
@@ -53,10 +49,10 @@ int main(int arg, char** argv){
     scanf("%ud", &n_seed);
     scanf("%d", &hist_param);
 
-    initRand(n_a, n_c, n_m, n_seed, hist_param);
+    initRand(n_a, n_c, n_m, n_seed);
   }
 
-  if (histogram){
+  if (hist_param){
     for (i = 0; i < 100; i++) {
       hist_vec[i] = 0;
     }
@@ -64,19 +60,18 @@ int main(int arg, char** argv){
 
   for (i = 0; i < n; i++) {
     random_number = nextRand();
-    printf("%lf\n", random_number);
 
-    if(histogram){
+    if(hist_param){
       random_number_i = random_number * 100;
       hist_vec[random_number_i]++;
     }
-
+    else
+      printf("%lf\n", random_number);
   }
 
-  if(histogram){
+  if(hist_param){
     for (i = 0; i < 100; i++) {
       printf("%d\n",hist_vec[i]);
     }
   }
-
 }
