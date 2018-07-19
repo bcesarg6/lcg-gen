@@ -1,0 +1,7 @@
+c <- read.table("out_v.txt")$V1
+
+s <- seq(from=0, to=1, by=0.01)
+
+png("hist.png")
+
+hist(c, breaks=100, xlab="Valor", ylab="Frequência", main=NULL)

@@ -1,6 +1,6 @@
-c <- read.table("../out.txt")
+c <- read.table("out_v.txt")$V1
+d <- seq(from=1, to=10000)
 
-a <- c(2, 12, 3, 1, 13, 10, 8, 9, 9)
-b <- c(1, 2, 3, 4, 5, 6, 7, 8, 9)
+png("disp.png")
 
-plot(b, c)
+plot(d, c, xlab="Iteração", ylab="Valor", pch=".")
